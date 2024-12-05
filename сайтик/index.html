@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сервис бронирования жилья</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="auth-buttons">
+            <a href="register.html" class="auth-button">Регистрация</a>
+            <a href="login.html" class="auth-button">Вход</a>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Вологда" class="location-input" id="location-input">
+            <input type="date" class="date-input" id="checkin-date">
+            <input type="date" class="date-input" id="checkout-date">
+            <button class="search-button" onclick="searchHotels()">Поиск</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="sidebar">
+            <div class="price-range">
+                <h3>Цена за сутки, ₽</h3>
+                <input type="number" placeholder="от" class="price-input" id="min-price">
+                <input type="number" placeholder="до" class="price-input" id="max-price">
+                <button class="apply-price-button" onclick="applyPriceFilter()">Применить</button>
+            </div>
+            <div class="additional-filters">
+                <h3>Отзывы по отелям</h3>
+                <label>
+                    <input type="checkbox" name="filter" value="rating-5" onclick="applyFilter('rating-5')">
+                    Выше 5
+                </label>
+                <label>
+                    <input type="checkbox" name="filter" value="rating-4" onclick="applyFilter('rating-4')">
+                    Выше 4
+                </label>
+                
+            </div>
+            <button class="show-all-filters" onclick="resetFilters()">Сбросить все фильтры</button>
+        </div>
+
+        <div class="main-content">
+            <div class="results">
+                <div class="result-item">
+                    <div class="carousel">
+                        <div class="carousel-item active">
+                             
+                        </div>
+                        <div class="carousel-item">
+                             
+                        </div>
+                        <div class="carousel-item">
+                             
+                        </div>
+                        <button class="carousel-control prev" onclick="prevSlide(0)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="carousel-control next" onclick="nextSlide(0)"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="hotel-info">
+                        <h2>Атмосферная студия 5.6 ИСТОРИЧЕСКИЙ ЦЕНТР</h2>
+                        <p>Адрес: ул. Пушкинская, д. 1, кв. 1</p>
+                        <p>2 306 ₽ за сутки</p>
+                        <button class="book-button" onclick="bookHotel('Апартаменты 1')">Забронировать</button>
+                        <button class="details-button" onclick="openModal('Апартаменты 1')">Подробнее</button>
+                        <div class="reviews">
+                            <h3>Отзывы</h3>
+                            <div class="review">
+                                <p><strong>Иван Иванов:</strong> Отличный отель, рекомендую!</p>
+                                <p>Рейтинг: ★★★★☆</p>
+                            </div>
+                            <div class="review">
+                                <p><strong>Мария Смирнова:</strong> Хорошее расположение, чистые номера.</p>
+                                <p>Рейтинг: ★★★★★</p>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="result-item">
+                    <div class="carousel">
+                        <div class="carousel-item active">
+                          
+                        </div>
+                        <div class="carousel-item">
+                          
+                        </div>
+                        <div class="carousel-item">
+                          
+                        </div>
+                        <button class="carousel-control prev" onclick="prevSlide(1)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="carousel-control next" onclick="nextSlide(1)"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="hotel-info">
+                        <h2>Апартаменты студия</h2>
+                        <p>Адрес: ул. Ленинградская, д. 2, кв. 2</p>
+                        <p>3 499 ₽ за сутки</p>
+                        <button class="book-button" onclick="bookHotel('Апартаменты 2')">Забронировать</button>
+                        <button class="details-button" onclick="openModal('Апартаменты 2')">Подробнее</button>
+                        <div class="reviews">
+                            <h3>Отзывы</h3>
+                            <div class="review">
+                                <p><strong>Алексей Петров:</strong> Удобное место, хороший сервис.</p>
+                                <p>Рейтинг: ★★★★☆</p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="result-item">
+                    <div class="carousel">
+                        <div class="carousel-item active">
+                            
+                        </div>
+                        <div class="carousel-item">
+                    
+                        </div>
+                        <div class="carousel-item">
+                    
+                        </div>
+                        <button class="carousel-control prev" onclick="prevSlide(2)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="carousel-control next" onclick="nextSlide(2)"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="hotel-info">
+                        <h2>Апартаменты люкс</h2>
+                        <p>Адрес: ул. Конева, д. 3, кв. 3</p>
+                        <p>4 999 ₽ за сутки</p>
+                        <button class="book-button" onclick="bookHotel('Апартаменты 3')">Забронировать</button>
+                        <button class="details-button" onclick="openModal('Апартаменты 3')">Подробнее</button>
+                        <div class="reviews">
+                            <h3>Отзывы</h3>
+                            <div class="review">
+                                <p><strong>Ольга Иванова:</strong> Отличные апартаменты, рекомендую!</p>
+                                <p>Рейтинг: ★★★★★</p>
+                            </div>
+                          
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="map" id="map"></div>
+        </div>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title">Детали апартаментов</h2>
+            <p id="modal-description">Описание апартаментов и дополнительная информация.</p>
+        </div>
+    </div>
+
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2223.640541996999!2d30.315868416015008!3d59.93428598137167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46963153f5f5c18f%3A0x8f6fa94f5d85e6d2!2z0JzQsNGPINC-0LHQu9Cw0YHRgtGMLCDQkdC40YHRn9C10YwsINC80LXQvdGCLCDQnNC-0YHQutCw0L3QvtCy!5e0!3m2!1sru!2sus!4v1638350566707!5m2!1sru!2sus" width="2000" height="700" style="border: 2px;;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
